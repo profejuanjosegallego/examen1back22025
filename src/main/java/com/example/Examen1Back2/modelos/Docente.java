@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 public class Docente {
 
-
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 

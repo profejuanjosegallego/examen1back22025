@@ -20,7 +20,14 @@ public class Usuario {
     private String telefono;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_usuario", nullable = false)
     private TipoUsuario tipoUsuario;
+
+    public enum TipoUsuario {
+        ADMIN,
+        DOCENTE,
+        ESTUDIANTE
+    }
 
     //Estableciendo la relacion uno a uno con la tabla docente
     @OneToOne(mappedBy = "usuario")
