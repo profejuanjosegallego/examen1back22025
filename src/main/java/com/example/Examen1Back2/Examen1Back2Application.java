@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Examen1Back2Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Examen1Back2Application.class, args);
+
+        SpringApplication.run(Examen1Back2Application.class, args);
+
 	}
 
 }

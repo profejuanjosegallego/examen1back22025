@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 @Entity
 public class Curso {
 
-    @I
-    @Ge(strategy = IDENTITY)
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
     private Integer id;
     private String nombre
 
@@ -23,5 +23,29 @@ public class Curso {
         this.nombre = nombre;
     }
 
+    //Faltaron getters and setters
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Docente getDocente() {
+        return docente;
+    }
+
+    public void setDocente(Docente docente) {
+        this.docente = docente;
+    }
 }
