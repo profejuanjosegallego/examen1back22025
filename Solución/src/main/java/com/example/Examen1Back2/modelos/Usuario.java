@@ -2,47 +2,45 @@ package com.example.Examen1Back2.modelos;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
+//FALTO EL ENUM (EVITAR ERRORES DE TIPEO)
+
+enum TipoUsuario {
+    DOCENTE,
+    ESTUDIANTE,
+    ADMINISTRADOR
+}
+
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.)
-    @Colun(name = "id_usuario")
+    //No estaba completa la estrategia de generacion generatedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario")
     private Integer id;
 
     @Column(nullable = false, length = 100)
     private String nombre;
 
-    @Colun(name = "correo_electronico", unique = true)
+    @Column(name = "correo_electronico", unique = true, length = 150) //Le definimos el tamaño
     private String correoElectronico;
+    @Column(length =255) //Especificamos la contraseña
     private String contrasena;
     private String telefono;
 
     @Enumerated(EnumType.STRING)
-    // El tipo no es TipoUsuario es String
-    private String tipoUsuario;
+    private TipoUsuario tipoUsuario;
 
     //Estableciendo la relacion uno a uno con la tabla docente
     @OneToOne(mappedBy = "usuario")
     @JsonBackReference(value = "docente-usuario")
-    // El tipo no es Docencete es String
-    private String docente;
+    private Docente docente;
 
     public Usuario() {
     }
-    /*
-    public Usuario(Integer id, String nombre, String correoElectronico, String contraseña, String telefono, TipoUsuario tipoUsuario) {
-        this.id = id;
-        this.nombre = nombre;
-        this.correoElectronico = correoElectronico;
-        this.contrasena = contrasena;
-        this.telefono = telefono;
-        this.tipoUsuario = tipoUsuario;
-    }
-    */
-    //Al constructor le falta el docente
-    public Usuario(Integer id, String nombre, String correoElectronico, String contraseña, String telefono, String tipoUsuario, String docente) {
+
+    public Usuario(Integer id, String nombre, String correoElectronico, String contrasena, String telefono, com.example.Examen1Back2.modelos.TipoUsuario tipoUsuario, Docente docente) {
         this.id = id;
         this.nombre = nombre;
         this.correoElectronico = correoElectronico;
@@ -51,7 +49,6 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
         this.docente = docente;
     }
-    //Se cambia la ñ
 
     public Integer getId() {
         return id;
@@ -93,19 +90,19 @@ public class Usuario {
         this.telefono = telefono;
     }
 
-    public String getTipoUsuario() {
+    public TipoUsuario getTipoUsuario() {
         return tipoUsuario;
     }
 
-    public void setTipoUsuario(String tipoUsuario) {
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
 
-    public String getDocente() {
+    public Docente getDocente() {
         return docente;
     }
 
-    public void setDocente(String docente) {
+    public void setDocente(Docente docente) {
         this.docente = docente;
     }
 }

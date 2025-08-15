@@ -1,13 +1,12 @@
 package com.example.Examen1Back2.modelos;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-
 import java.util.List;
 
 @Entity
 public class Docente {
 
-
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 

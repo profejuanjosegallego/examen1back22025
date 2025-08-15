@@ -1,29 +1,37 @@
 package com.example.Examen1Back2.modelos;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+// GenerationType imcompleto
+import jakarta.persistence.GenerationType;
 @Entity
 public class Curso {
 
     @Id
-    @GeneratedValue(strategy = IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String nombre
+
+    private String nombre;
 
     @ManyToOne
-    @JoinColumn(name="fk_docente", referencedColumnName = "id");
+    @JoinColumn(name="fk_docente", referencedColumnName = "id")
     @JsonBackReference(value = "docente-curso")
-    Docente docente
+    private Docente docente;
 
     public Curso() {
     }
 
+    /*
     public Curso(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
+    */
 
-    //Faltaron getters and setters
+    public Curso(Integer id, String nombre, Docente docente) {
+        this.id = id;
+        this.nombre = nombre;
+        this.docente = docente;
+    }
 
     public Integer getId() {
         return id;
