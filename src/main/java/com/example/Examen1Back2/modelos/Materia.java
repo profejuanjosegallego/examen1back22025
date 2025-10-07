@@ -1,34 +1,32 @@
 package com.example.Examen1Back2.modelos;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "cursos")
-public class Curso {
+@Table(name = "materias")
+public class Materia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_curso")
+    @Column(name = "id_materia")
     private Integer id;
 
     @Column(nullable = false, length = 100)
     private String nombre;
 
-    @ManyToOne
-    @JoinColumn(name = "fk_docente", referencedColumnName = "id_docente")
-    @JsonBackReference(value = "docente-curso")
-    private Docente docente;
+    @Column(length = 255)
+    private String descripcion;
 
-    public Curso() {
+    public Materia() {
     }
 
-    public Curso(Integer id, String nombre) {
+    public Materia(Integer id, String nombre, String descripcion) {
         this.id = id;
         this.nombre = nombre;
+        this.descripcion = descripcion;
     }
 
-    // Getters y Setters
+    // Getters y setters
     public Integer getId() {
         return id;
     }
@@ -45,12 +43,11 @@ public class Curso {
         this.nombre = nombre;
     }
 
-    public Docente getDocente() {
-        return docente;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setDocente(Docente docente) {
-        this.docente = docente;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }
-
